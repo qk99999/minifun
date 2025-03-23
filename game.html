@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FVB8NG111"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-7FVB8NG111');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Game - MiNiFun</title>
+    <meta name="description" content="Play your favorite games on MiNiFun, your go-to platform for free online browser games.">
+    <link rel="canonical" href="https://minifun.vip/" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        apple: {
+                            blue: '#007AFF',
+                            green: '#34C759',
+                            red: '#FF3B30',
+                            orange: '#FF9500',
+                            yellow: '#FFCC00',
+                            purple: '#AF52DE',
+                            pink: '#FF2D55',
+                            gray: '#8E8E93'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .game-container {
+            aspect-ratio: 16/9;
+            height: 80vh;
+            max-height: 80vh;
+        }
+        .game-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        @media (max-width: 768px) {
+            .game-container {
+                height: 70vh;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-gradient-to-r from-apple-blue to-apple-purple text-white shadow-md">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div>
+                    <a href="index.html" class="text-2xl font-bold">MiNiFun</a>
+                </div>
+                <div class="hidden md:flex space-x-4">
+                    <a href="index.html" class="text-white hover:text-gray-200">Home</a>
+                    <a href="index.html#popular" class="text-white hover:text-gray-200">Popular</a>
+                    <a href="index.html#new" class="text-white hover:text-gray-200">New Games</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-white" id="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 移动菜单 -->
+            <div id="mobile-menu" class="hidden md:hidden bg-white rounded-lg shadow-md p-4 mb-4 absolute top-24 left-4 right-4 z-50">
+                <nav class="flex flex-col space-y-2">
+                    <a href="index.html" class="text-gray-700 hover:text-apple-blue py-2 border-b border-gray-100">Home</a>
+                    <a href="index.html#popular" class="text-gray-700 hover:text-apple-blue py-2 border-b border-gray-100">Popular</a>
+                    <a href="index.html#new" class="text-gray-700 hover:text-apple-blue py-2">New Games</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="mb-4">
+            <a href="index.html" class="text-apple-blue hover:underline">
+                <i class="fas fa-arrow-left mr-2"></i><span>Back to Games</span>
+            </a>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg p-4 mb-8">
+            <h1 id="game-title" class="text-2xl md:text-3xl font-bold mb-2">Loading Game...</h1>
+            <p id="game-description" class="text-gray-600 mb-4">Please wait while the game loads...</p>
+            
+            <div class="game-container rounded-lg overflow-hidden bg-gray-900 mb-4">
+                <iframe id="game-frame" class="game-frame" src="about:blank" allowfullscreen></iframe>
+            </div>
+            
+            <div class="flex justify-between items-center">
+                <div>
+                    <span id="game-category" class="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">
+                        <i id="category-icon" class="fas fa-gamepad mr-1"></i>
+                        <span id="category-name">Category</span>
+                    </span>
+                </div>
+                <div>
+                    <button id="fullscreen-btn" class="bg-apple-blue text-white px-4 py-2 rounded hover:bg-blue-600">
+                        <i class="fas fa-expand mr-1"></i><span>Fullscreen</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <h2 class="text-xl font-bold mb-4">How to Play</h2>
+            <div id="game-instructions" class="prose max-w-none">
+                <p>Loading game instructions...</p>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <h2 class="text-xl font-bold mb-4">Similar Games</h2>
+            <div id="similar-games" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Similar games will be loaded dynamically -->
+                <div class="text-center text-gray-500">Loading similar games...</div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white mt-8">
+        <div class="container mx-auto px-4 py-6">
+            <div class="text-center">
+                <p class="text-gray-400">&copy; 2024 MiNiFun.vip. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Parse URL parameters to get game ID
+        const urlParams = new URLSearchParams(window.location.search);
+        const gameId = urlParams.get('id');
+        
+        if (gameId) {
+            loadGame(gameId);
+        } else {
+            // 显示错误消息
+            document.getElementById('game-container').innerHTML = '<div class="text-center p-8"><p class="text-red-500">Game ID not provided. Please go back to the homepage and select a game.</p></div>';
+        }
+        
+        // 移动菜单控制
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // 点击外部关闭菜单
+            document.addEventListener('click', function(e) {
+                if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+        
+        // 加载游戏数据
+        async function loadGame(gameId) {
+            try {
+                const response = await fetch('games.json');
+                if (!response.ok) {
+                    throw new Error('Failed to load game data');
+                }
+                
+                const data = await response.json();
+                const game = data.games.find(g => g.id === gameId);
+                
+                if (game) {
+                    // 更新页面标题
+                    document.title = `${game.title} - MiNiFun`;
+                    
+                    // 填充游戏信息
+                    document.getElementById('game-title').textContent = game.title;
+                    document.getElementById('game-description').textContent = game.description;
+                    
+                    const categoryName = document.getElementById('category-name');
+                    if (categoryName) {
+                        // 获取分类名称
+                        const category = data.categories.find(cat => cat.id === game.category);
+                        categoryName.textContent = category ? category.name : game.category;
+                        
+                        // 设置分类链接
+                        const categoryLink = document.getElementById('category-link');
+                        if (categoryLink) {
+                            categoryLink.setAttribute('href', `index.html?category=${game.category}`);
+                        }
+                    }
+                    
+                    // 加载游戏
+                    if (game.iframeUrl) {
+                        document.getElementById('game-frame').src = game.iframeUrl;
+                        
+                        // 设置全屏按钮
+                        const fullscreenBtn = document.getElementById('fullscreen-btn');
+                        if (fullscreenBtn) {
+                            fullscreenBtn.addEventListener('click', function() {
+                                const gameFrame = document.getElementById('game-frame');
+                                if (gameFrame.requestFullscreen) {
+                                    gameFrame.requestFullscreen();
+                                } else if (gameFrame.webkitRequestFullscreen) { /* Safari */
+                                    gameFrame.webkitRequestFullscreen();
+                                } else if (gameFrame.msRequestFullscreen) { /* IE11 */
+                                    gameFrame.msRequestFullscreen();
+                                }
+                            });
+                        }
+                        
+                        // 设置游戏指南
+                        document.getElementById('game-instructions').innerHTML = `
+                            <p>Game Instructions: Use keyboard and mouse to control the game. Enjoy!</p>
+                        `;
+                        
+                    } else if (game.detailPage) {
+                        // 重定向到外部游戏页面
+                        window.location.href = game.detailPage;
+                    } else {
+                        document.getElementById('game-container').innerHTML = '<div class="text-center p-8"><p class="text-red-500">Game not available. Please try another game.</p></div>';
+                    }
+                    
+                    // 加载相关游戏
+                    loadRelatedGames(data.games, game.category, gameId);
+                    
+                } else {
+                    // 游戏未找到
+                    document.getElementById('game-title').textContent = 'Game Not Found';
+                    document.getElementById('game-description').textContent = 'Sorry, the requested game was not found. Please return to the homepage and select another game.';
+                    document.getElementById('game-container').innerHTML = '<div class="text-center p-8"><p class="text-red-500">Game not found. <a href="index.html" class="text-apple-blue">Return to homepage</a>.</p></div>';
+                }
+                
+            } catch (error) {
+                console.error('Error loading game:', error);
+                document.getElementById('game-container').innerHTML = `<div class="text-center p-8"><p class="text-red-500">Failed to load game data. Please try again later.</p></div>`;
+            }
+        }
+        
+        // 加载相关游戏
+        function loadRelatedGames(games, category, currentGameId) {
+            const relatedGamesContainer = document.getElementById('similar-games');
+            if (!relatedGamesContainer) return;
+            
+            // 过滤出同一分类的游戏，排除当前游戏
+            const relatedGames = games
+                .filter(game => game.isActive && game.category === category && game.id !== currentGameId)
+                .slice(0, 4); // 只显示4个相关游戏
+            
+            if (relatedGames.length === 0) {
+                relatedGamesContainer.innerHTML = '<p class="text-gray-500 text-center py-4">No related games found.</p>';
+                return;
+            }
+            
+            relatedGamesContainer.innerHTML = '';
+            
+            relatedGames.forEach(game => {
+                const gameCard = document.createElement('div');
+                gameCard.className = 'bg-white rounded-lg shadow-sm hover:shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1';
+                
+                let badgeHTML = '';
+                if (game.isHot) {
+                    badgeHTML = '<div class="absolute top-2 right-2 bg-apple-red text-white text-xs font-bold px-2 py-0.5 rounded">HOT</div>';
+                } else if (game.isNew) {
+                    badgeHTML = '<div class="absolute top-2 right-2 bg-apple-green text-white text-xs font-bold px-2 py-0.5 rounded">NEW</div>';
+                }
+                
+                gameCard.innerHTML = `
+                    <a href="game.html?id=${game.id}">
+                        <div class="relative">
+                            <img src="${game.imageUrl}" alt="${game.title}" class="w-full h-36 object-cover">
+                            ${badgeHTML}
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-bold text-sm mb-1 truncate">${game.title}</h3>
+                            <p class="text-gray-600 text-xs line-clamp-2 h-8">${game.description}</p>
+                            <div class="mt-2">
+                                <span class="bg-apple-blue text-white text-xs px-2 py-1 rounded inline-block">Play Now</span>
+                            </div>
+                        </div>
+                    </a>
+                `;
+                
+                relatedGamesContainer.appendChild(gameCard);
+            });
+        }
+    </script>
+</body>
+</html> 
