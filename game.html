@@ -50,6 +50,8 @@
             aspect-ratio: 16/9;
             height: 80vh;
             max-height: 80vh;
+            position: relative;
+            overflow: hidden;
         }
         .game-frame {
             width: 100%;
@@ -58,7 +60,44 @@
         }
         @media (max-width: 768px) {
             .game-container {
-                height: 70vh;
+                height: 60vh;
+                max-height: 60vh;
+                aspect-ratio: auto; /* 移动端不强制使用16:9比例 */
+            }
+            .game-frame {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+            /* 移动端优化其他元素 */
+            .container {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            h1 {
+                font-size: 1.5rem !important;
+            }
+            #game-description {
+                font-size: 0.9rem;
+            }
+            .game-controls {
+                flex-direction: column;
+                align-items: start;
+                gap: 10px;
+            }
+            .game-controls > div:last-child {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+            }
+            #fullscreen-btn {
+                width: 48%;
+            }
+            /* 添加旋转屏幕按钮 */
+            #rotate-btn {
+                width: 48%;
             }
         }
     </style>
@@ -105,10 +144,12 @@
             <p id="game-description" class="text-gray-600 mb-4">Please wait while the game loads...</p>
             
             <div class="game-container rounded-lg overflow-hidden bg-gray-900 mb-4">
-                <iframe id="game-frame" class="game-frame" src="about:blank" allowfullscreen></iframe>
+                <iframe id="game-frame" class="game-frame" src="about:blank" 
+                        allowfullscreen allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        frameborder="0"></iframe>
             </div>
             
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center game-controls">
                 <div>
                     <span id="game-category" class="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">
                         <i id="category-icon" class="fas fa-gamepad mr-1"></i>
@@ -118,6 +159,10 @@
                 <div>
                     <button id="fullscreen-btn" class="bg-apple-blue text-white px-4 py-2 rounded hover:bg-blue-600">
                         <i class="fas fa-expand mr-1"></i><span>Fullscreen</span>
+                    </button>
+                    <!-- 添加移动端旋转屏幕提示按钮 -->
+                    <button id="rotate-btn" class="hidden bg-apple-orange text-white px-4 py-2 rounded hover:bg-orange-600">
+                        <i class="fas fa-sync-alt mr-1"></i><span>旋转屏幕</span>
                     </button>
                 </div>
             </div>
@@ -210,19 +255,57 @@
                     
                     // 加载游戏
                     if (game.iframeUrl) {
-                        document.getElementById('game-frame').src = game.iframeUrl;
+                        // 使用延迟加载避免某些移动设备上的问题
+                        setTimeout(() => {
+                            const gameFrame = document.getElementById('game-frame');
+                            gameFrame.src = game.iframeUrl;
+                            
+                            // 添加加载事件监听器
+                            gameFrame.addEventListener('load', function() {
+                                console.log('游戏框架已加载');
+                                // 成功加载后可以进行其他操作
+                            });
+                            
+                            // 添加错误处理
+                            gameFrame.addEventListener('error', function(e) {
+                                console.error('游戏框架加载失败', e);
+                                document.getElementById('game-instructions').innerHTML = `
+                                    <p class="text-red-500">游戏加载失败。请尝试刷新页面或选择其他游戏。</p>
+                                `;
+                            });
+                        }, 300);
                         
                         // 设置全屏按钮
                         const fullscreenBtn = document.getElementById('fullscreen-btn');
                         if (fullscreenBtn) {
                             fullscreenBtn.addEventListener('click', function() {
                                 const gameFrame = document.getElementById('game-frame');
-                                if (gameFrame.requestFullscreen) {
-                                    gameFrame.requestFullscreen();
-                                } else if (gameFrame.webkitRequestFullscreen) { /* Safari */
-                                    gameFrame.webkitRequestFullscreen();
-                                } else if (gameFrame.msRequestFullscreen) { /* IE11 */
-                                    gameFrame.msRequestFullscreen();
+                                // 因为直接点击游戏iframe通常更可靠，在移动设备上模拟点击
+                                try {
+                                    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                                    
+                                    if (isMobile) {
+                                        // 在移动设备上，直接尝试触发iframe内的点击
+                                        // 或者向用户提供旋转屏幕的提示
+                                        alert("提示: 在移动设备上，您可以旋转到横屏模式获得更好的游戏体验。某些游戏可能在游戏界面内有自己的全屏按钮。");
+                                        gameFrame.focus();
+                                    } else {
+                                        // 桌面端使用标准全屏API
+                                        if (gameFrame.requestFullscreen) {
+                                            gameFrame.requestFullscreen();
+                                        } else if (gameFrame.webkitRequestFullscreen) { /* Safari */
+                                            gameFrame.webkitRequestFullscreen();
+                                        } else if (gameFrame.mozRequestFullScreen) { /* Firefox */
+                                            gameFrame.mozRequestFullScreen();
+                                        } else if (gameFrame.msRequestFullscreen) { /* IE/Edge */
+                                            gameFrame.msRequestFullscreen();
+                                        } else {
+                                            alert("您的浏览器不支持全屏功能");
+                                        }
+                                    }
+                                } catch (error) {
+                                    console.error("全屏请求失败:", error);
+                                    alert("全屏请求失败。某些设备或浏览器可能限制了此功能。");
                                 }
                             });
                         }
@@ -301,6 +384,38 @@
                 
                 relatedGamesContainer.appendChild(gameCard);
             });
+        }
+
+        // 检测是否为移动设备并应用相应的UI变化
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        if (isMobile) {
+            // 显示旋转屏幕按钮
+            const rotateBtn = document.getElementById('rotate-btn');
+            if (rotateBtn) {
+                rotateBtn.classList.remove('hidden');
+                rotateBtn.addEventListener('click', function() {
+                    alert("请旋转您的设备到横屏模式，以获得更好的游戏体验。");
+                });
+            }
+            
+            // 为游戏容器添加双击尝试全屏的功能
+            const gameContainer = document.querySelector('.game-container');
+            if (gameContainer) {
+                gameContainer.addEventListener('dblclick', function() {
+                    try {
+                        const gameFrame = document.getElementById('game-frame');
+                        if (gameFrame) {
+                            if (gameFrame.requestFullscreen) {
+                                gameFrame.requestFullscreen();
+                            } else if (gameFrame.webkitRequestFullscreen) {
+                                gameFrame.webkitRequestFullscreen();
+                            }
+                        }
+                    } catch (e) {
+                        console.log('双击全屏尝试失败', e);
+                    }
+                });
+            }
         }
     </script>
 </body>
