@@ -1,0 +1,175 @@
+{
+  "featuredGame": {
+    "id": "castle-craft",
+    "title": "Castle Craft",
+    "description": "Build and defend your castle in this strategic action game",
+    "iframeUrl": "https://games.crazygames.com/en_US/castle-craft/index.html?skipPrerollFirstSessionExp25=true&v=1.326",
+    "category": "strategy",
+    "isActive": true
+  },
+  "games": [
+    {
+      "id": "monster-survivors",
+      "title": "Monster Survivors",
+      "description": "Survive waves of monsters in this thrilling action game",
+      "imageUrl": "https://via.placeholder.com/300x200?text=Monster+Survivors",
+      "category": "action",
+      "isNew": false,
+      "isHot": true,
+      "detailPage": "game-detail.html",
+      "isActive": true
+    },
+    {
+      "id": "puzzle-master",
+      "title": "Puzzle Master",
+      "description": "Test your brain with challenging puzzles",
+      "imageUrl": "https://via.placeholder.com/300x200?text=Puzzle+Master",
+      "category": "puzzle",
+      "isNew": true,
+      "isHot": false,
+      "detailPage": "#",
+      "isActive": true
+    },
+    {
+      "id": "space-shooter",
+      "title": "Space Shooter",
+      "description": "Defend the galaxy in this action-packed shooter",
+      "imageUrl": "https://via.placeholder.com/300x200?text=Space+Shooter",
+      "category": "shooting",
+      "isNew": false,
+      "isHot": false,
+      "detailPage": "#",
+      "isActive": true
+    },
+    {
+      "id": "tower-defense",
+      "title": "Tower Defense",
+      "description": "Build towers and defend your territory",
+      "imageUrl": "https://via.placeholder.com/300x200?text=Tower+Defense",
+      "category": "strategy",
+      "isNew": true,
+      "isHot": false,
+      "detailPage": "#",
+      "isActive": true
+    },
+    {
+      "id": "racing-fever",
+      "title": "Racing Fever",
+      "description": "Race against opponents on exciting tracks",
+      "imageUrl": "https://via.placeholder.com/300x200?text=Racing+Fever",
+      "category": "racing",
+      "isNew": false,
+      "isHot": false,
+      "detailPage": "#",
+      "isActive": true
+    },
+    {
+      "id": "adventure-quest",
+      "title": "Adventure Quest",
+      "description": "Embark on an epic adventure in a fantasy world",
+      "imageUrl": "https://via.placeholder.com/300x200?text=Adventure+Quest",
+      "category": "adventure",
+      "isNew": false,
+      "isHot": false,
+      "detailPage": "#",
+      "isActive": true
+    },
+    {
+      "id": "zombie-apocalypse",
+      "title": "Zombie Apocalypse",
+      "description": "Survive in a world overrun by zombies",
+      "imageUrl": "https://via.placeholder.com/300x200?text=Zombie+Apocalypse",
+      "category": "action",
+      "isNew": true,
+      "isHot": false,
+      "detailPage": "#",
+      "isActive": true
+    },
+    {
+      "id": "candy-crush-clone",
+      "title": "Sweet Match",
+      "description": "Match candies to clear levels in this addictive puzzle game",
+      "imageUrl": "https://via.placeholder.com/300x200?text=Sweet+Match",
+      "category": "puzzle",
+      "isNew": false,
+      "isHot": true,
+      "detailPage": "#",
+      "isActive": true
+    },
+    {
+      "id": "soccer-star",
+      "title": "Soccer Star",
+      "description": "Score goals and become a soccer legend",
+      "imageUrl": "https://via.placeholder.com/300x200?text=Soccer+Star",
+      "category": "sports",
+      "isNew": false,
+      "isHot": false,
+      "detailPage": "#",
+      "isActive": false
+    }
+  ],
+  "categories": [
+    {
+      "id": "action",
+      "name": "Action",
+      "icon": "fas fa-gamepad"
+    },
+    {
+      "id": "shooting",
+      "name": "Shooting",
+      "icon": "fas fa-crosshairs"
+    },
+    {
+      "id": "puzzle",
+      "name": "Puzzle",
+      "icon": "fas fa-puzzle-piece"
+    },
+    {
+      "id": "strategy",
+      "name": "Strategy",
+      "icon": "fas fa-chess"
+    },
+    {
+      "id": "adventure",
+      "name": "Adventure",
+      "icon": "fas fa-running"
+    },
+    {
+      "id": "racing",
+      "name": "Racing",
+      "icon": "fas fa-car"
+    },
+    {
+      "id": "sports",
+      "name": "Sports",
+      "icon": "fas fa-futbol"
+    }
+  ],
+  "themes": [
+    {
+      "id": "horror",
+      "name": "Horror",
+      "icon": "fas fa-ghost"
+    },
+    {
+      "id": "fantasy",
+      "name": "Fantasy",
+      "icon": "fas fa-dragon"
+    },
+    {
+      "id": "scifi",
+      "name": "Sci-Fi",
+      "icon": "fas fa-rocket"
+    },
+    {
+      "id": "anime",
+      "name": "Anime",
+      "icon": "fas fa-robot"
+    },
+    {
+      "id": "pixel",
+      "name": "Pixel Art",
+      "icon": "fas fa-cubes"
+    }
+  ]
+} 
