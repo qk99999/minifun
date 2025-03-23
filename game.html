@@ -162,7 +162,7 @@
                     </button>
                     <!-- 添加移动端旋转屏幕提示按钮 -->
                     <button id="rotate-btn" class="hidden bg-apple-orange text-white px-4 py-2 rounded hover:bg-orange-600">
-                        <i class="fas fa-sync-alt mr-1"></i><span>旋转屏幕</span>
+                        <i class="fas fa-sync-alt mr-1"></i><span>Rotate Screen</span>
                     </button>
                 </div>
             </div>
@@ -262,15 +262,15 @@
                             
                             // 添加加载事件监听器
                             gameFrame.addEventListener('load', function() {
-                                console.log('游戏框架已加载');
+                                console.log('Game frame loaded successfully');
                                 // 成功加载后可以进行其他操作
                             });
                             
                             // 添加错误处理
                             gameFrame.addEventListener('error', function(e) {
-                                console.error('游戏框架加载失败', e);
+                                console.error('Game frame loading failed', e);
                                 document.getElementById('game-instructions').innerHTML = `
-                                    <p class="text-red-500">游戏加载失败。请尝试刷新页面或选择其他游戏。</p>
+                                    <p class="text-red-500">Game loading failed. Please try refreshing the page or select another game.</p>
                                 `;
                             });
                         }, 300);
@@ -287,7 +287,7 @@
                                     if (isMobile) {
                                         // 在移动设备上，直接尝试触发iframe内的点击
                                         // 或者向用户提供旋转屏幕的提示
-                                        alert("提示: 在移动设备上，您可以旋转到横屏模式获得更好的游戏体验。某些游戏可能在游戏界面内有自己的全屏按钮。");
+                                        alert("Tip: On mobile devices, you can rotate to landscape mode for a better gaming experience. Some games may have their own fullscreen button inside the game interface.");
                                         gameFrame.focus();
                                     } else {
                                         // 桌面端使用标准全屏API
@@ -300,12 +300,12 @@
                                         } else if (gameFrame.msRequestFullscreen) { /* IE/Edge */
                                             gameFrame.msRequestFullscreen();
                                         } else {
-                                            alert("您的浏览器不支持全屏功能");
+                                            alert("Your browser does not support fullscreen mode");
                                         }
                                     }
                                 } catch (error) {
-                                    console.error("全屏请求失败:", error);
-                                    alert("全屏请求失败。某些设备或浏览器可能限制了此功能。");
+                                    console.error("Fullscreen request failed:", error);
+                                    alert("Fullscreen request failed. Some devices or browsers may restrict this feature.");
                                 }
                             });
                         }
@@ -394,7 +394,7 @@
             if (rotateBtn) {
                 rotateBtn.classList.remove('hidden');
                 rotateBtn.addEventListener('click', function() {
-                    alert("请旋转您的设备到横屏模式，以获得更好的游戏体验。");
+                    alert("Please rotate your device to landscape mode for a better gaming experience.");
                 });
             }
             
@@ -412,7 +412,7 @@
                             }
                         }
                     } catch (e) {
-                        console.log('双击全屏尝试失败', e);
+                        console.log('Double-click fullscreen attempt failed', e);
                     }
                 });
             }
